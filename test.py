@@ -18,6 +18,7 @@ snake_body = [
 
 
 def min_value():
+    # https://www.w3resource.com/python-exercises/dictionary/python-data-type-dictionary-exercise-15.php
     # Not quite what I'm after. This only returns the (first) minimum values found.
     """Make a list out of x and y positions,
     then find minimum of list"""
@@ -32,6 +33,7 @@ def min_value():
 
 
 def min_item():
+    # https://stackoverflow.com/questions/5320871/in-list-of-dicts-find-min-value-of-a-common-dict-field
     # Better. This returns the entire item of the (first) lowest item found.
     min_x = min(snake_body, key=lambda x: x["x"])
     min_y = min(snake_body, key=lambda y: y["y"])
@@ -41,6 +43,7 @@ def min_item():
 
 
 def min_index():
+    # https://stackoverflow.com/questions/30546889/get-max-value-index-for-a-list-of-dicts
     # This is what I need - returns the INDEX to the (first) lowest item found.
     # I'm still not quite sure how it works though!
     min_x = min(range(len(snake_body)), key=lambda index: snake_body[index]['x'])
