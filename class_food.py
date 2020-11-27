@@ -19,4 +19,3 @@ class Food(Turtle):
         rand_x = randint(-int(SCREEN_WIDTH / 2.15), int(SCREEN_WIDTH / 2.15))  # roughly +/- 280
         rand_y = randint(-int(SCREEN_HEIGHT / 2.15), int(SCREEN_HEIGHT / 2.15))
         self.goto(rand_x, rand_y)
-
