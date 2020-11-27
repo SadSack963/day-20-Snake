@@ -6,6 +6,7 @@ RIGHT = 0
 UP = 90
 DOWN = -90
 
+
 class Snake:
 
     def __init__(self):
@@ -13,20 +14,28 @@ class Snake:
         self.create_snake()
         self.head = self.body[0]
 
-    def create_snake(self):
-        """Create 3 segment snake with the Head at (0, 0) and the Tail at (-40, 0)"""
-        for i in range(0, -3, -1):
-            self.new_seg(x=(i * SEG_SIZE), y=0)
-
-    def new_seg(self, x, y):
-        """Create new snake segment at the given position on the screen"""
+    def new_seg(self, position):
+        """Create new snake segment at the given position (tuple) on the screen"""
         new_segment = Turtle(shape="square")
         new_segment.speed(1)
         new_segment.color("white")
         new_segment.pu()
-        new_segment.setheading(0)
-        new_segment.setposition(x, y)
+        new_segment.setheading(RIGHT)
+        new_segment.setposition(position)
         self.body.append(new_segment)
+
+    def create_snake(self):
+        """Create 3 segment snake with the Head at (0, 0) and the Tail at (-40, 0)"""
+        for i in range(0, -3, -1):
+            position = (i * SEG_SIZE, 0)
+            self.new_seg(position)
+
+    def extend(self):
+        """Adds a new segment at the same position as the last in the body.
+        When move_seq() is next called this new segment will not move
+        (it goes to the same position as the second last segment)."""
+        position = self.body[-1].position()
+        self.new_seg(position)
 
     def move_seg(self, index):
         """Move a snake segment to the same position as the previous segment in the chain."""
@@ -55,3 +64,4 @@ class Snake:
     def down(self):
         if self.head.heading() != UP:
             self.head.setheading(DOWN)
+
