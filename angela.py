@@ -30,4 +30,8 @@ while game_on:
     time.sleep(0.1)  # slow down the animation
     snake.move_body()
 
+    # Detect collision with food
+    if snake.head.distance(food) < 15:
+        food.new_food()
+
 s.exitonclick()
