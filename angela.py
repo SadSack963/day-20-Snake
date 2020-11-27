@@ -23,8 +23,6 @@ s.onkey(snake.up, "Up")
 s.onkey(snake.down, "Down")
 
 game_on = True
-score = 0
-scoreboard.write_score(score)
 
 # while -280 < snake.head.xcor() < 280 \
 #         and -280 < snake.head.ycor() < 280:
@@ -36,7 +34,6 @@ while game_on:
     # Detect collision with food
     if snake.head.distance(food) < 15:
         food.new_food()
-        score += 1
-        scoreboard.write_score(score)
+        scoreboard.update()
 
 s.exitonclick()
