@@ -97,3 +97,17 @@ while game_running:
         time.sleep(1)  # gives time to view the colours
 
 s.exitonclick()
+
+# ------------------------------------------------------------------------------
+
+# Aborted this method of moving the snake without modifying the list.
+
+# A much simpler way is to add a new element at snake_body[0]
+# and remove the last element in the list.
+
+# I was attempting to avoid this because of the extra computation
+# required to move the entire list when inserting an element at position 0,
+# but it became too cumbersome to determine which element was last in the chain.
+
+# See https://simplegametutorials.github.io/love/snake/
+

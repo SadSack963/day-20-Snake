@@ -1,6 +1,25 @@
 from turtle import Turtle, Screen
 from random import randint
 import time
+import class_snake
+
+
+def get_direction():
+    global current_direction
+
+    s.onkey(snake.left, "left")
+    # if ? and current_direction != "right":
+    #     current_direction = snake.left()
+    s.onkey(snake.right, "right")
+    # if ? and current_direction != "left":
+    # current_direction = snake.right()
+    s.onkey(snake.up, "up")
+    # if ? and current_direction != "down":
+    # current_direction = snake.up()
+    s.onkey(snake.down, "down")
+    # if ? and current_direction != "up":
+    # current_direction = snake.down()
+
 
 # Screen setup
 s = Screen()
@@ -10,40 +29,26 @@ s.setup(width=600, height=600)
 s.title("Snake")
 s.tracer(0)  # Turn off screen animation
 
+# Create a snake
+snake = class_snake.Snake()
+current_direction = ""
 
-# Turtle setup
-# List of snake segments: [Turtle()]
-snake_body = []
-seg_size = 20
-
-
-def new_seg(x, y):
-    new_segment = Turtle(shape="square")
-    new_segment.speed(1)
-    new_segment.color("white")
-    new_segment.pu()
-    new_segment.setposition(x, y)
-    snake_body.append(new_segment)
-
-
-def move_snake(index):
-    new_pos_x = snake_body[index-1].xcor()  # get x coordinate
-    new_pos_y = snake_body[index-1].ycor()  # get y coordinate
-    snake_body[index].goto(new_pos_x, new_pos_y)
+s.listen()  # listen for keystrokes
+# turtle.onkey(fun, key):
+#   fun – a function WITH NO ARGUMENTS, or None
+#   key – a string: key (e.g. “a”) or key-symbol (e.g. “space”)
+#   Tkinter Key Symbols are at https://www.tcl.tk/man/tcl8.4/TkCmd/keysyms.htm
+s.onkey(snake.left, "Left")
+s.onkey(snake.right, "Right")
+s.onkey(snake.up, "Up")
+s.onkey(snake.down, "Down")
 
 
-# Create 3 segment snake
-for i in range(0, -3, -1):
-    new_seg(x=(i * seg_size), y=0)
-    s.update()
-
-while snake_body[0].xcor() < 280:
-    for i in range(len(snake_body) - 1, 0, -1):
-        move_snake(i)
-    snake_body[0].fd(seg_size)
-    s.update()
-    time.sleep(0.5)  # slow down the animation
-
-#     time.sleep(1)  # gives time to view the colours
+# while -280 < snake.head.xcor() < 280 \
+#         and -280 < snake.head.ycor() < 280:
+while True:
+    s.update()  # update the screen
+    time.sleep(0.1)  # slow down the animation
+    snake.move_body()
 
 s.exitonclick()
