@@ -44,8 +44,8 @@ while game_on:
         gameover.GameOver()
 
     # If the head collides with any body segment then trigger game over.
-    for seg in snake.body:
-        if seg != snake.head and snake.head.distance(seg) < 10:
+    for seg in snake.body[1:]:  # use slicing to get every element except the head
+        if snake.head.distance(seg) < 10:
             game_on = False
             gameover.GameOver()
 
